@@ -1,6 +1,5 @@
 from itertools import combinations, product, permutations
 import operator
-import numpy as np
 from copy import copy
 
 #numbers = [75, 25, 5, 9 ,8, 10]
