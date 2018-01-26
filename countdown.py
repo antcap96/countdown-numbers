@@ -151,9 +151,9 @@ def dismantle(s):
     return root
     
 priority = {'+': 0, 
-            '-': 0, 
-            '*': 1, 
-            '/': 1}
+            '-': 1, 
+            '*': 2, 
+            '/': 2}
 
 def build(node, prev=0):
     """take a tree of operations and turn it into a string
