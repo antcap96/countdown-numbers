@@ -130,8 +130,11 @@ def dismantle(s):
     Returns:
         Node -- tree of the operations
     """
+    
     if s[0] == '(' and s[-1] == ')':
         s = s[1:-1]
+    else:
+        return Node(string=s)
     stack = []
     op_idx = None
     for i,c in enumerate(s):
@@ -139,16 +142,11 @@ def dismantle(s):
             stack.append('(')
         if c == ')':
             stack.pop()
-        
-        if len(stack) == 0 and i != len(s)-1:
+        if len(stack) == 0 and (not c.isdigit()) and (i != len(s)-1):
+            print(c.isdigit())
             op_idx = i
 
-    if op_idx is not None:
-        root = Node(left=dismantle(s[:op_idx]), right=dismantle(s[op_idx+1:]), string=s[op_idx])
-    else:
-        root = Node(string=s)
-    
-    return root
+    return Node(left=dismantle(s[:op_idx]), right=dismantle(s[op_idx+1:]), string=s[op_idx])
     
 priority = {'+': 0, 
             '-': 1, 
@@ -171,6 +169,9 @@ def build(node, prev=0):
     if node.left is node.right is None:
         return node.string
     # priorities
+    print(node.string)
+    print(node.left, node.right)
+    print()
     p = priority[node.string]
 
     s = build(node.left, p) + node.string + build(node.right, p)
