@@ -83,11 +83,11 @@ def parse(solution, numbers):
     """parse the output of get_solutions
     
     Arguments:
-        solution {list of (list)} -- output of get_solutions
+        solution {list} -- an element of the output of get_solutions
         numbers {list of (int)} -- numbers given to get_solutions
     
     Returns:
-        list -- solutions without operator priority
+        str -- solution without operator priority
     """
     result = '_0_'
 
