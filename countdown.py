@@ -143,15 +143,14 @@ def dismantle(s):
         if c == ')':
             stack.pop()
         if len(stack) == 0 and (not c.isdigit()) and (i != len(s)-1):
-            print(c.isdigit())
             op_idx = i
 
     return Node(left=dismantle(s[:op_idx]), right=dismantle(s[op_idx+1:]), string=s[op_idx])
     
 priority = {'+': 0, 
-            '-': 1, 
-            '*': 2, 
-            '/': 2}
+            '-': 0, 
+            '*': 1, 
+            '/': 1}
 
 def build(node, prev=0):
     """take a tree of operations and turn it into a string
@@ -168,13 +167,11 @@ def build(node, prev=0):
     """
     if node.left is node.right is None:
         return node.string
+    
     # priorities
-    print(node.string)
-    print(node.left, node.right)
-    print()
     p = priority[node.string]
 
-    s = build(node.left, p) + node.string + build(node.right, p)
+    s = build(node.left, p) + node.string + build(node.right, p+1)
     if p >= prev:
         return s
     else:
